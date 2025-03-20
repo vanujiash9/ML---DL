@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lộ Trình 7 Ngày - 8 Chủ Đề Machine Learning & Deep Learning</title>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --accent-color: #4cc9f0;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+      --success-color: #4caf50;
+      --warning-color: #ff9800;
+      --info-color: #2196f3;
+      --danger-color: #f44336;
+    }
+
+    /* Reset CSS & Base Font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #f5f7fb;
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+
+    /* HEADER & TOC */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .header-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header-content h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .toc {
+      background: var(--light-color);
+      text-align: center;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid var(--primary-color);
+    }
+
+    .toc a {
+      color: var(--dark-color);
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 0.8rem;
+      transition: color 0.3s ease;
+    }
+
+    .toc a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 2rem 2rem; /* Khoảng cách để header không che nội dung */
+    }
+
+    /* Intro Section */
+    .intro-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .intro-section ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .intro-section ul li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .intro-section ul li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      color: var(--success-color);
+      font-weight: bold;
+    }
+
+    .note {
+      background-color: rgba(255,152,0,0.1);
+      border-left: 3px solid var(--warning-color);
+      padding: 1rem;
+      margin: 1.2rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Timeline & Day Cards */
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .day-card {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 100px;
+    }
+
+    .day-card::before {
+      content: attr(data-day);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 60px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .card h4 {
+      font-size: 1.2rem;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .card ul li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      color: var(--success-color);
+      font-weight: bold;
+    }
+
+    .card li strong {
+      font-weight: bold;
+    }
+
+    .project {
+      background-color: rgba(76,201,240,0.1);
+      border-left: 3px solid var(--accent-color);
+      padding: 0.8rem;
+      margin: 1rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .checkmark {
+      color: var(--success-color);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .resources {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    .resources a {
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--primary-color);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .resources a:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .difficulty {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-left: 1rem;
+      vertical-align: middle;
+    }
+
+    .beginner {
+      background-color: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .intermediate {
+      background-color: #fff8e1;
+      color: #ff8f00;
+    }
+
+    .advanced {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    .emoji {
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+
+    .key-concept {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ddd;
+    }
+
+    .key-concept h4 {
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .model-comparison {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    .model-comparison th, 
+    .model-comparison td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    /* Final Summary Section */
+    .final-summary {
+      background-color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .final-summary h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    .final-summary p {
+      margin-bottom: 1rem;
+    }
+    .final-summary ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .final-summary ul li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 30px;
+      font-weight: bold;
+    }
+    .final-summary ul li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      color: var(--success-color);
+      font-weight: bold;
+    }
+
+    footer {
+      background: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 30px;
+      }
+      .day-card {
+        padding-left: 70px;
+      }
+      .day-card::before {
+        width: 60px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .main-container {
+        padding: 100px 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER & TOC -->
+  <header>
+    <div class="header-content">
+      <h1>🔥 Lộ Trình 7 Ngày VỚI MACHINE LEARNING & DEEP LEARNING 🚀</h1>
+      <h2>Từ cơ bản đến nâng cao với 8 chủ đề và dự án thực tế</h2>
+    </div>
+    <nav class="toc">
+      <a href="#ngay1">Ngày 1</a>
+      <a href="#ngay2">Ngày 2</a>
+      <a href="#ngay3">Ngày 3</a>
+      <a href="#ngay4">Ngày 4</a>
+      <a href="#ngay5">Ngày 5</a>
+      <a href="#ngay6">Ngày 6</a>
+      <a href="#ngay7">Ngày 7</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-container">
+    <!-- Giới thiệu chung -->
+    <section class="intro-section">
+      <h2>Giới Thiệu Lộ Trình</h2>
+      <p>Lộ trình này giúp bạn tiếp cận toàn diện Machine Learning & Deep Learning qua 8 chủ đề, được phân bố trong 7 ngày:</p>
+      <ul>
+        <li><strong>📖 Lý thuyết & kỹ thuật</strong> cần nắm vững</li>
+        <li><strong>🎯 Dự án thực hành</strong> ứng dụng vào bài toán thực tế</li>
+        <li><strong>⏰ Phân bổ thời gian</strong> học hợp lý (3-5 giờ/ngày)</li>
+      </ul>
+      <div class="note">
+        <p><strong>Trước khi bắt đầu:</strong> Chuẩn bị môi trường (Python, NumPy, Pandas, scikit-learn, PyTorch/TensorFlow), kiến thức Toán (đại số tuyến tính, xác suất) và làm quen với Kaggle, Google Colab.</p>
+      </div>
+      <div class="note">
+        <p><strong>Lưu ý:</strong> Những chủ đề khó hơn được tách riêng hoặc kết hợp buổi sáng & chiều để đảm bảo không quá tải. Sau lộ trình, bạn có thể tìm hiểu sâu hơn về MLOps, Triển khai mô hình và Model Interpretability.</p>
+      </div>
+    </section>
+
+    <!-- TIMELINE & NGÀY -->
+    <div class="timeline">
+      <!-- NGÀY 1: Linear Regression -->
+      <div id="ngay1" class="day-card" data-day="Ngày 1">
+        <div class="card">
+          <h3>
+            Hồi Quy Tuyến Tính - Dự Đoán Giá Nhà 
+            <span class="emoji">🏡</span>
+            <span class="difficulty beginner">Cơ bản</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>Hồi quy tuyến tính, MSE, Gradient Descent</strong></li>
+            <li><strong>Feature Scaling</strong> (MinMax, Standardization)</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>3-4 giờ: 1 giờ ôn đại số, 1 giờ lý thuyết, 1-2 giờ thực hành với Boston Housing.</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Dự đoán giá nhà</strong> với dữ liệu Boston Housing/Kaggle.</p>
+            <p>Xây dựng mô hình hồi quy tuyến tính, từ khám phá dữ liệu đến đánh giá R².</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/prasadperera/the-boston-housing-dataset" target="_blank" title="Notebook Linear Regression">Notebook: Boston House Price Prediction</a>
+            <a href="https://towardsdatascience.com/linear-regression-8cbd3a597f79" target="_blank" title="Bài viết Linear Regression">Tài liệu: Linear Regression từ A-Z</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 2: Classification & Ensemble -->
+      <div id="ngay2" class="day-card" data-day="Ngày 2">
+        <div class="card">
+          <h3>
+            Phân Loại &amp; Ensemble – Rủi Ro Tín Dụng 
+            <span class="emoji">💳</span>
+            <span class="difficulty beginner">Cơ bản</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>Logistic Regression, Decision Trees</strong></li>
+            <li><strong>Random Forest, XGBoost, SVM</strong></li>
+            <li><strong>Đánh giá mô hình:</strong> Precision, Recall, F1-score, ROC, AUC</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>3-4 giờ: 1 giờ lý thuyết, 1 giờ so sánh thuật toán, 1-2 giờ thực hành dự án Credit Risk.</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Dự đoán khả năng vỡ nợ</strong> của khách hàng.</p>
+            <p>So sánh hiệu suất các thuật toán và tối ưu hóa mô hình với dữ liệu mất cân bằng.</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/rafjaa/credit-risk-analysis-in-python" target="_blank" title="Notebook Credit Risk">Notebook: Credit Risk Analysis</a>
+            <a href="https://towardsdatascience.com/understanding-xgboost-46504cda4f19" target="_blank" title="XGBoost">Tài liệu: XGBoost cho Classification</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 3: Neural Networks & Unsupervised -->
+      <div id="ngay3" class="day-card" data-day="Ngày 3">
+        <div class="card">
+          <h3>
+            Neural Networks &amp; Unsupervised 
+            <span class="emoji">🧠</span>
+            <span class="difficulty intermediate">Trung bình</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>MLP &amp; Backpropagation</strong>, hàm kích hoạt (ReLU, Sigmoid, Tanh)</li>
+            <li><strong>K-means, PCA, Autoencoder</strong></li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>4-5 giờ: 1 giờ ôn MLP, 1 giờ dự đoán doanh số (supervised), 1-2 giờ unsupervised (K-means, PCA), tùy chọn 1 giờ Autoencoder.</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Dự đoán doanh số bán hàng</strong> với MLP.</p>
+            <p>Xây dựng mô hình MLP dự đoán doanh số dựa trên dữ liệu lịch sử.</p>
+          </div>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Phân cụm khách hàng</strong> với K-means.</p>
+            <p>Phân tích hành vi mua sắm, chia khách hàng thành nhóm để tối ưu marketing.</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/fabiendaniel/customer-segmentation" target="_blank" title="Customer Segmentation">Notebook: Customer Segmentation with K-Means</a>
+            <a href="https://towardsdatascience.com/understanding-multilayer-perceptron-99657c5a95a0" target="_blank" title="MLP Tutorial">Tài liệu: MLP từ Cơ Bản đến Nâng Cao</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 4: CNN -->
+      <div id="ngay4" class="day-card" data-day="Ngày 4">
+        <div class="card">
+          <h3>
+            CNN - Phân Loại Hình Ảnh 
+            <span class="emoji">📷</span>
+            <span class="difficulty intermediate">Trung bình</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>CNN:</strong> Convolution, Pooling, Fully Connected</li>
+            <li><strong>Batch Normalization, Data Augmentation</strong></li>
+            <li><strong>Transfer Learning</strong> (ResNet, VGG, ...)</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>3-4 giờ: 1 giờ lý thuyết CNN, 1-2 giờ xây dựng mô hình, 1 giờ Transfer Learning.</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Phân loại ảnh</strong> với CIFAR-10 hoặc Fashion MNIST.</p>
+            <p>Xây dựng CNN, áp dụng data augmentation để cải thiện độ chính xác.</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/keras/cnn-classification-fashion-mnist" target="_blank" title="CNN Classification">Notebook: CNN for Image Classification</a>
+            <a href="https://towardsdatascience.com/understanding-convolutional-neural-networks-4571e63c7201" target="_blank" title="CNN Explained">Tài liệu: CNN Explained</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 5: RNN -->
+      <div id="ngay5" class="day-card" data-day="Ngày 5">
+        <div class="card">
+          <h3>
+            RNN, LSTM, GRU - Dự Báo Chuỗi Thời Gian 
+            <span class="emoji">📈</span>
+            <span class="difficulty intermediate">Trung bình</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>RNN, LSTM, GRU</strong>: Bi-directional RNN, Seq2Seq</li>
+            <li><strong>Xử lý dữ liệu chuỗi</strong>: Scaling, windowing, feature extraction</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>3-4 giờ: 1 giờ lý thuyết RNN, 1-2 giờ thực hành dự báo (LSTM), tùy chọn 1 giờ Seq2Seq (dịch máy).</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Dự báo giá cổ phiếu hoặc thời tiết</strong> bằng LSTM.</p>
+            <p>Xây dựng mô hình LSTM và đánh giá hiệu suất dự báo.</p>
+          </div>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Dịch máy (NMT)</strong> với Seq2Seq.</p>
+            <p>Xây dựng mô hình encoder-decoder cho bài toán dịch đơn giản.</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/thedatasith/stock-prediction-with-lstm" target="_blank" title="Stock Prediction with LSTM">Notebook: Stock Prediction with LSTM</a>
+            <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" title="Understanding LSTM">Tài liệu: Understanding LSTM</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 6: Reinforcement Learning -->
+      <div id="ngay6" class="day-card" data-day="Ngày 6">
+        <div class="card">
+          <h3>
+            Reinforcement Learning 
+            <span class="emoji">🎮</span>
+            <span class="difficulty intermediate">Trung bình</span>
+          </h3>
+          <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
+          <ul>
+            <li><strong>Khái niệm RL:</strong> Agent, Environment, Reward, Policy</li>
+            <li><strong>Q-learning, Deep Q-Network (DQN)</strong></li>
+            <li><strong>OpenAI Gym</strong> (CartPole, MountainCar)</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian:</h4>
+          <p>3-4 giờ: 1 giờ lý thuyết RL, 1-2 giờ thực hành DQN, theo dõi quá trình học của agent.</p>
+          <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Áp dụng DQN cho CartPole</strong> trong OpenAI Gym.</p>
+            <p>Xây dựng agent tự cân bằng cột, theo dõi reward và quá trình học.</p>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.gymlibrary.ml/" target="_blank" title="OpenAI Gym">OpenAI Gym</a>
+            <a href="https://spinningup.openai.com/en/latest/" target="_blank" title="Spinning Up in Deep RL">Spinning Up in Deep RL</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NGÀY 7: GAN & Transformer -->
+      <div id="ngay7" class="day-card" data-day="Ngày 7">
+        <div class="card">
+          <h3>
+            GAN &amp; Transformer 
+            <span class="emoji">🎨📝</span>
+            <span class="difficulty advanced">Nâng cao</span>
+          </h3>
+          <!-- Phần GAN -->
+          <h4><span class="emoji">📖</span> Lý thuyết: GAN</h4>
+          <ul>
+            <li><strong>Generator &amp; Discriminator</strong></li>
+            <li><strong>DCGAN, Conditional GAN</strong></li>
+            <li><strong>Semi-supervised Learning</strong> với GAN</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian: GAN</h4>
+          <p>2-3 giờ: 1 giờ lý thuyết GAN, 1-2 giờ thực hành DCGAN trên MNIST/CelebA.</p>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Sinh ảnh từ MNIST/CelebA</strong> với DCGAN.</p>
+            <p>Tạo ảnh mới bằng GAN, tùy chỉnh hyperparameters để cải thiện chất lượng ảnh.</p>
+          </div>
+
+          <!-- Phần Transformer -->
+          <h4><span class="emoji">📖</span> Lý thuyết: Transformer &amp; NLP</h4>
+          <ul>
+            <li><strong>Kiến trúc Transformer</strong>: Self-Attention, Multi-head Attention</li>
+            <li><strong>BERT, GPT, T5, BART</strong>; sử dụng Hugging Face Transformers</li>
+          </ul>
+          <h4><span class="emoji">⏰</span> Thời gian: Transformer</h4>
+          <p>2-3 giờ: 1 giờ lý thuyết Transformer, 1-2 giờ fine-tuning BERT cho phân loại hoặc tóm tắt văn bản.</p>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Phân loại văn bản</strong> (spam, cảm xúc) bằng BERT.</p>
+            <p>Fine-tune BERT trên tập dữ liệu văn bản, đánh giá bằng F1-score.</p>
+          </div>
+          <div class="project">
+            <p><span class="checkmark">✔</span> <strong>Tóm tắt văn bản</strong> với T5/BART.</p>
+            <p>Xây dựng hệ thống tóm tắt tự động, đánh giá qua ROUGE, BLEU.</p>
+          </div>
+          <div class="key-concept">
+            <h4>Các bước dự án với BERT:</h4>
+            <ol>
+              <li>Thu thập &amp; tiền xử lý dữ liệu (IMDB, Yelp, v.v.)</li>
+              <li>Tạo input_ids, attention_masks, token_type_ids</li>
+              <li>Tải BERT pre-trained từ Hugging Face</li>
+              <li>Fine-tune với learning rate nhỏ, tối ưu hyperparameters</li>
+              <li>Đánh giá mô hình (Accuracy, F1-score)</li>
+              <li>Triển khai mô hình (Flask/Streamlit)</li>
+            </ol>
+          </div>
+          <div class="resources">
+            <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
+            <a href="https://www.kaggle.com/code/abhishek/fine-tune-bert-for-text-classification" target="_blank" title="Notebook Fine-tuning BERT">Notebook: Fine-tuning BERT for Text Classification</a>
+            <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" title="Illustrated Transformer">Tài liệu: Illustrated Transformer</a>
+            <a href="https://huggingface.co/docs/transformers/index" target="_blank" title="Hugging Face Transformers">Hugging Face Transformers</a>
+            <a href="https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/summarization.ipynb" target="_blank" title="Notebook Summarization">Notebook: Text Summarization with BART/T5</a>
+            <a href="https://github.com/google-research/bert" target="_blank" title="BERT Official Repository">GitHub: BERT Official Repository</a>
+          </div>
+          <div class="key-concept">
+            <h4>Tổng kết lộ trình:</h4>
+            <p>Bạn đã học từ các thuật toán ML cơ bản (Linear Regression, Ensemble) đến Deep Learning nâng cao (CNN, RNN, GAN, Transformer) kèm theo Học Tăng Cường (Reinforcement Learning). Đây là nền tảng vững chắc để bạn tiếp tục khám phá các lĩnh vực chuyên sâu như Advanced RL, Computer Vision nâng cao, hoặc Speech Processing. Đồng thời, bạn có thể mở rộng kiến thức về MLOps, Triển khai mô hình và Model Interpretability.</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Timeline -->
+
+    <!-- FINAL SUMMARY SECTION -->
+    <section class="final-summary">
+      <h2>Tổng Kết Lộ Trình</h2>
+      <p>Sau 7 ngày học với 8 chủ đề, bạn đã được:</p>
+      <ul>
+        <li><strong>Hiểu và ứng dụng các thuật toán ML cơ bản:</strong> Hồi Quy Tuyến Tính, Phân Loại &amp; Ensemble.</li>
+        <li><strong>Tiếp cận và xây dựng mô hình Deep Learning:</strong> Neural Networks, CNN và RNN cho dữ liệu chuỗi.</li>
+        <li><strong>Khám phá Reinforcement Learning:</strong> Từ Q-learning đến Deep Q-Network.</li>
+        <li><strong>Phát triển các mô hình nâng cao:</strong> GAN cho sinh dữ liệu và Transformer cho NLP.</li>
+      </ul>
+      <p>Lộ trình này cung cấp cho bạn nền tảng toàn diện để tự tin bước vào các dự án thực tế và phát triển kỹ năng chuyên sâu, từ việc khai phá dữ liệu, xây dựng mô hình cho đến triển khai ứng dụng.</p>
+    </section>
+  </div><!-- End Main Container -->
+
+  <footer>
+    <p>© 2025 Lộ Trình Machine Learning & Deep Learning. All rights reserved.</p>
+  </footer>
+</body>
+</html>

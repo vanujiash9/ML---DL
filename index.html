@@ -17,7 +17,7 @@
       --danger-color: #f44336;
     }
 
-    /* Reset CSS & Base Font */
+    /* Reset & Base Font */
     * {
       margin: 0;
       padding: 0;
@@ -47,25 +47,25 @@
     .header-content {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem; /* Giảm padding để header nhỏ hơn */
       text-align: center;
     }
 
     .header-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem; /* Giảm font-size */
+      margin-bottom: 0.3rem;
     }
 
     .header-content h2 {
-      font-size: 1.8rem;
+      font-size: 1.4rem; /* Giảm font-size */
       font-weight: 400;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .toc {
       background: var(--light-color);
       text-align: center;
-      padding: 0.5rem 0;
+      padding: 0.3rem 0;
       border-bottom: 2px solid var(--primary-color);
     }
 
@@ -85,7 +85,7 @@
     .main-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 100px 2rem 2rem; /* Khoảng cách để header không che nội dung */
+      padding: 100px 2rem 2rem;
     }
 
     /* Intro Section */
@@ -106,6 +106,7 @@
       margin-bottom: 0.7rem;
       position: relative;
       padding-left: 30px;
+      font-weight: bold;
     }
 
     .intro-section ul li::before {
@@ -122,6 +123,41 @@
       padding: 1rem;
       margin: 1.2rem 0;
       border-radius: 0 4px 4px 0;
+    }
+
+    /* Tools & Libraries Section */
+    .tools-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tools-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .tools-section ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .tools-section ul li {
+      margin-bottom: 0.7rem;
+      position: relative;
+      padding-left: 30px;
+      font-weight: bold;
+    }
+
+    .tools-section ul li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      color: var(--success-color);
+      font-weight: bold;
     }
 
     /* Timeline & Day Cards */
@@ -395,11 +431,23 @@
         <li><strong>⏰ Phân bổ thời gian</strong> học hợp lý (3-5 giờ/ngày)</li>
       </ul>
       <div class="note">
-        <p><strong>Trước khi bắt đầu:</strong> Chuẩn bị môi trường (Python, NumPy, Pandas, scikit-learn, PyTorch/TensorFlow), kiến thức Toán (đại số tuyến tính, xác suất) và làm quen với Kaggle, Google Colab.</p>
+        <p><strong>Trước khi bắt đầu:</strong> Chuẩn bị môi trường (SCIKIT-LEARN, TensorFlow/PyTorch, Hugging Face, OpenAI Gym, v.v.), kiến thức Toán (đại số tuyến tính, xác suất) và làm quen với Kaggle, Google Colab.</p>
       </div>
       <div class="note">
-        <p><strong>Lưu ý:</strong> Những chủ đề khó hơn được tách riêng hoặc kết hợp buổi sáng & chiều để đảm bảo không quá tải. Sau lộ trình, bạn có thể tìm hiểu sâu hơn về MLOps, Triển khai mô hình và Model Interpretability.</p>
+        <p><strong>Lưu ý:</strong> Những chủ đề khó hơn được tách riêng hoặc kết hợp buổi sáng & chiều. Sau lộ trình, bạn có thể tìm hiểu sâu hơn về MLOps, Triển khai mô hình và Model Interpretability (Confusion Matrix, SHAP, LIME).</p>
       </div>
+    </section>
+
+    <!-- Tools & Libraries Section -->
+    <section class="tools-section">
+      <h2>Công Cụ & Thư Viện</h2>
+      <ul>
+        <li><strong>SCIKIT-LEARN:</strong> Các thuật toán ML truyền thống (Linear Regression, Logistic Regression, Decision Trees, Clustering, v.v.) và các công cụ đánh giá như Confusion Matrix, ROC Curve.</li>
+        <li><strong>TensorFlow / PyTorch:</strong> Frameworks hàng đầu cho Deep Learning, hỗ trợ xây dựng và huấn luyện mạng neural phức tạp.</li>
+        <li><strong>Hugging Face Transformers:</strong> Bộ thư viện mạnh mẽ cho NLP, cho phép tải và fine-tune các mô hình như BERT, GPT, T5, BART.</li>
+        <li><strong>OpenAI Gym:</strong> Nền tảng cho Reinforcement Learning với các môi trường như CartPole, MountainCar.</li>
+      </ul>
+      <p>Bạn cũng nên nắm vững các công cụ đánh giá như <strong>Confusion Matrix</strong>, Accuracy, Precision, Recall, và F1-score cho bài toán phân loại.</p>
     </section>
 
     <!-- TIMELINE & NGÀY -->
@@ -414,7 +462,7 @@
           </h3>
           <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
           <ul>
-            <li><strong>Hồi quy tuyến tính, MSE, Gradient Descent</strong></li>
+            <li><strong>Linear Regression</strong> (Hồi quy tuyến tính), <strong>MSE</strong>, <strong>Gradient Descent</strong></li>
             <li><strong>Feature Scaling</strong> (MinMax, Standardization)</li>
           </ul>
           <h4><span class="emoji">⏰</span> Thời gian:</h4>
@@ -422,7 +470,7 @@
           <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
           <div class="project">
             <p><span class="checkmark">✔</span> <strong>Dự đoán giá nhà</strong> với dữ liệu Boston Housing/Kaggle.</p>
-            <p>Xây dựng mô hình hồi quy tuyến tính, từ khám phá dữ liệu đến đánh giá R².</p>
+            <p>Xây dựng mô hình Linear Regression, từ khám phá dữ liệu đến đánh giá R².</p>
           </div>
           <div class="resources">
             <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
@@ -442,7 +490,7 @@
           </h3>
           <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
           <ul>
-            <li><strong>Logistic Regression, Decision Trees</strong></li>
+            <li><strong>Logistic Regression</strong>, <strong>Decision Tree</strong></li>
             <li><strong>Random Forest, XGBoost, SVM</strong></li>
             <li><strong>Đánh giá mô hình:</strong> Precision, Recall, F1-score, ROC, AUC</li>
           </ul>
@@ -471,19 +519,19 @@
           </h3>
           <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
           <ul>
-            <li><strong>MLP &amp; Backpropagation</strong>, hàm kích hoạt (ReLU, Sigmoid, Tanh)</li>
-            <li><strong>K-means, PCA, Autoencoder</strong></li>
+            <li><strong>MLP &amp; Backpropagation</strong> (ví dụ: MLP, Perceptron), các hàm kích hoạt (ReLU, Sigmoid, Tanh)</li>
+            <li><strong>K-means Clustering, PCA, Autoencoder</strong></li>
           </ul>
           <h4><span class="emoji">⏰</span> Thời gian:</h4>
-          <p>4-5 giờ: 1 giờ ôn MLP, 1 giờ dự đoán doanh số (supervised), 1-2 giờ unsupervised (K-means, PCA), tùy chọn 1 giờ Autoencoder.</p>
+          <p>4-5 giờ: 1 giờ ôn MLP, 1 giờ dự báo doanh số (supervised), 1-2 giờ unsupervised (K-means, PCA), tùy chọn 1 giờ Autoencoder.</p>
           <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
           <div class="project">
             <p><span class="checkmark">✔</span> <strong>Dự đoán doanh số bán hàng</strong> với MLP.</p>
-            <p>Xây dựng mô hình MLP dự đoán doanh số dựa trên dữ liệu lịch sử.</p>
+            <p>Xây dựng mô hình MLP để dự đoán doanh số dựa trên dữ liệu lịch sử.</p>
           </div>
           <div class="project">
             <p><span class="checkmark">✔</span> <strong>Phân cụm khách hàng</strong> với K-means.</p>
-            <p>Phân tích hành vi mua sắm, chia khách hàng thành nhóm để tối ưu marketing.</p>
+            <p>Phân tích hành vi mua sắm, chia khách hàng thành các nhóm để tối ưu marketing.</p>
           </div>
           <div class="resources">
             <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
@@ -503,16 +551,16 @@
           </h3>
           <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
           <ul>
-            <li><strong>CNN:</strong> Convolution, Pooling, Fully Connected</li>
+            <li><strong>CNN:</strong> Các lớp Convolution, Pooling, Fully Connected</li>
             <li><strong>Batch Normalization, Data Augmentation</strong></li>
-            <li><strong>Transfer Learning</strong> (ResNet, VGG, ...)</li>
+            <li><strong>Transfer Learning</strong> (ví dụ: ResNet, VGG,...)</li>
           </ul>
           <h4><span class="emoji">⏰</span> Thời gian:</h4>
           <p>3-4 giờ: 1 giờ lý thuyết CNN, 1-2 giờ xây dựng mô hình, 1 giờ Transfer Learning.</p>
           <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
           <div class="project">
             <p><span class="checkmark">✔</span> <strong>Phân loại ảnh</strong> với CIFAR-10 hoặc Fashion MNIST.</p>
-            <p>Xây dựng CNN, áp dụng data augmentation để cải thiện độ chính xác.</p>
+            <p>Xây dựng mô hình CNN, áp dụng data augmentation để cải thiện độ chính xác.</p>
           </div>
           <div class="resources">
             <h4><span class="emoji">🔗</span> Tài liệu &amp; Bài tập:</h4>
@@ -532,11 +580,11 @@
           </h3>
           <h4><span class="emoji">📖</span> Lý thuyết cần học:</h4>
           <ul>
-            <li><strong>RNN, LSTM, GRU</strong>: Bi-directional RNN, Seq2Seq</li>
+            <li><strong>RNN, LSTM, GRU</strong>: (bao gồm Bi-directional RNN, Seq2Seq)</li>
             <li><strong>Xử lý dữ liệu chuỗi</strong>: Scaling, windowing, feature extraction</li>
           </ul>
           <h4><span class="emoji">⏰</span> Thời gian:</h4>
-          <p>3-4 giờ: 1 giờ lý thuyết RNN, 1-2 giờ thực hành dự báo (LSTM), tùy chọn 1 giờ Seq2Seq (dịch máy).</p>
+          <p>3-4 giờ: 1 giờ lý thuyết RNN, 1-2 giờ thực hành dự báo bằng LSTM, tùy chọn 1 giờ Seq2Seq (dịch máy).</p>
           <h4><span class="emoji">🎯</span> Dự án thực hành:</h4>
           <div class="project">
             <p><span class="checkmark">✔</span> <strong>Dự báo giá cổ phiếu hoặc thời tiết</strong> bằng LSTM.</p>
@@ -642,7 +690,7 @@
           </div>
           <div class="key-concept">
             <h4>Tổng kết lộ trình:</h4>
-            <p>Bạn đã học từ các thuật toán ML cơ bản (Linear Regression, Ensemble) đến Deep Learning nâng cao (CNN, RNN, GAN, Transformer) kèm theo Học Tăng Cường (Reinforcement Learning). Đây là nền tảng vững chắc để bạn tiếp tục khám phá các lĩnh vực chuyên sâu như Advanced RL, Computer Vision nâng cao, hoặc Speech Processing. Đồng thời, bạn có thể mở rộng kiến thức về MLOps, Triển khai mô hình và Model Interpretability.</p>
+            <p>Bạn đã học từ các thuật toán ML cơ bản (Linear Regression, Ensemble) đến Deep Learning nâng cao (CNN, RNN, GAN, Transformer) kèm theo Học Tăng Cường (Reinforcement Learning). Đây là nền tảng vững chắc để bạn tiếp tục khám phá các lĩnh vực chuyên sâu như <strong>Advanced RL</strong>, <strong>Computer Vision nâng cao</strong> hoặc <strong>Speech Processing</strong>. Đồng thời, bạn có thể mở rộng kiến thức về <strong>MLOps</strong>, <strong>Triển khai mô hình</strong> và <strong>Model Interpretability</strong> (Confusion Matrix, SHAP, LIME).</p>
           </div>
         </div>
       </div>
@@ -653,17 +701,17 @@
       <h2>Tổng Kết Lộ Trình</h2>
       <p>Sau 7 ngày học với 8 chủ đề, bạn đã được:</p>
       <ul>
-        <li><strong>Hiểu và ứng dụng các thuật toán ML cơ bản:</strong> Hồi Quy Tuyến Tính, Phân Loại &amp; Ensemble.</li>
-        <li><strong>Tiếp cận và xây dựng mô hình Deep Learning:</strong> Neural Networks, CNN và RNN cho dữ liệu chuỗi.</li>
-        <li><strong>Khám phá Reinforcement Learning:</strong> Từ Q-learning đến Deep Q-Network.</li>
-        <li><strong>Phát triển các mô hình nâng cao:</strong> GAN cho sinh dữ liệu và Transformer cho NLP.</li>
+        <li><strong>Hiểu và ứng dụng các thuật toán ML cơ bản:</strong> Hồi Quy Tuyến Tính, Phân Loại &amp; Ensemble (Linear Regression, Logistic Regression, Decision Tree, Random Forest, XGBoost, SVM).</li>
+        <li><strong>Tiếp cận và xây dựng mô hình Deep Learning:</strong> Neural Networks, CNN và RNN cho dữ liệu chuỗi (MLP, CNN, RNN, LSTM, GRU).</li>
+        <li><strong>Khám phá Reinforcement Learning:</strong> Từ Q-learning đến Deep Q-Network (DQN) trên OpenAI Gym.</li>
+        <li><strong>Phát triển các mô hình nâng cao:</strong> GAN cho sinh dữ liệu và Transformer cho NLP (BERT, GPT, T5, BART).</li>
       </ul>
-      <p>Lộ trình này cung cấp cho bạn nền tảng toàn diện để tự tin bước vào các dự án thực tế và phát triển kỹ năng chuyên sâu, từ việc khai phá dữ liệu, xây dựng mô hình cho đến triển khai ứng dụng.</p>
+      <p>Lộ trình này cung cấp cho bạn nền tảng toàn diện để tự tin bước vào các dự án thực tế, phát triển kỹ năng chuyên sâu, và mở rộng kiến thức sang MLOps, Triển khai mô hình cũng như Model Interpretability.</p>
     </section>
   </div><!-- End Main Container -->
 
   <footer>
-    <p>© 2025 Lộ Trình Machine Learning & Deep Learning. All rights reserved.</p>
+    <p>© 2025 Lộ Trình Machine Learning &amp; Deep Learning. All rights reserved.</p>
   </footer>
 </body>
 </html>
